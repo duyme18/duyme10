@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.userId = this.tokenStorage.getUserId();
-         this.router.navigate(['books']);
+        this.router.navigate(['books']);
+
       },
       err => {
         this.errorMessage = err.error.message;

@@ -41,6 +41,11 @@
             </select>
         </div>
         <div class="form-group">
+            <label>Ảnh</label>
+            <input type="file" accept="image/*" (change)="onSelectFile($event)" />
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-success" [disabled]="!bookForm.valid" (click)="saveGoToList()">Thêm
                 và
                 trở về

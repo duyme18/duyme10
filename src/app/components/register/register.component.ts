@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,7 +18,9 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +33,8 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        alert('Đăng ký thành công!');
+        this.router.navigate(['login']);
       },
       err => {
         this.errorMessage = err.error.message;

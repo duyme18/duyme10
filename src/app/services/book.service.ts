@@ -1,15 +1,18 @@
+import { Book } from './../models/book';
+import { FormGroup } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { Book } from '../models/book';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-
+  public dataForm?: FormGroup;
+  choixmenu: string = 'A';
+  listData: Book[] = [];
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -31,12 +34,13 @@ export class BookService {
     return this.httpClient.get<any>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  public addBook(book: Book) {
+  public addBook(formData: FormData): Observable<any> {
     const URL = `${this.apiURL}book`;
-    return this.httpClient.post<any>(URL, book, this.httpOptions).pipe(catchError(this.handleError));
+    // return this.httpClient.post<any>(URL, book, this.httpOptions).pipe(catchError(this.handleError));
+    return this.httpClient.post(`${URL}`, formData);
   }
 
-  public modifyBook(bookId: number, book: Book){
+  public modifyBook(bookId: number, book: Book) {
     const URL = `${this.apiURL}book/` + bookId;
     return this.httpClient.put<any>(URL, book, this.httpOptions).pipe(catchError(this.handleError));
   }

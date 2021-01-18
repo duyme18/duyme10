@@ -29,7 +29,6 @@ const routes: Routes = [
   { path: 'authors', component: AuthorComponent },
   { path: 'author-form/:id', component: AuthorFormComponent },
   { path: 'upload-files/:bookId', component: UploadFilesComponent },
-  { path: '**', component: PageNotFoundComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
