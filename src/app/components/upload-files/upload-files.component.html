@@ -1,0 +1,29 @@
+<div *ngIf="currentFile" class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
+        {{ progress }}%
+    </div>
+</div>
+
+<div class="input-group">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile04" (change)="selectFile($event)">
+        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+    </div>
+    <br/>
+    <div class="input-group-append">
+        <button class="btn btn-success" type="button" [disabled]="!selectedFiles" (click)="upload()">Tải ảnh</button>
+    </div>
+</div>
+
+<div class="alert alert-light" role="alert">{{ message }}</div>
+
+<img *ngFor='let url of files' [src]="url" height="150" width="200px" style="margin: 3px;"> <br />
+
+<div class="card">
+    <div class="card-header">Danh sách ảnh</div>
+    <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
+        <li class="list-group-item">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+        </li>
+    </ul>
+</div>
