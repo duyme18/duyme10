@@ -1,51 +1,37 @@
-div.scroll
-{
-
-height:500PX;
-FLOAT: left;
-
-padding: 1%;
-overflow:scroll;
-}
-h1
-{
-    font-size: 80px; 
-    text-align: center;
-    /* Titres de 40 pixels */
-}
-label
-{
-    font-weight: bold;
-
-   color :"#0000FF";
-
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-div.scroll
-{
-
-height:500PX;
-FLOAT: left;
-
-padding: 1%;
-overflow:scroll;
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
-h1
-{
-    font-size: 40px; 
-    text-align: center;
-    /* Titres de 40 pixels */
-}
-th
-{
-    font-size: 18px; 
-    text-align: center;
-    /* Titres de 40 pixels */
-}
-label
-{
-    font-weight: bold;
 
-   color :"#0000FF";
+#customers tr:nth-child(even) {
+    background-color: #aac7fc;
+}
 
+#customers tr:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4caf50;
+    color: white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
