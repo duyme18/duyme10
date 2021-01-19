@@ -1,22 +1,18 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorService } from './../../services/author.service';
 import { BookService } from './../../services/book.service';
-import { Book } from './../../models/book';
-import { Author } from './../../models/author';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Author } from '../../models/author';
+import { Book } from '../../models/book';
 
 @Component({
-  selector: 'app-book-form',
+  selector: 'duyme2-book-form',
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
 
-  bookFile: any;
-  imgURL: any;
-  public message: string = '';
-  public imagePath: any;
   public bookId = 0;
   public authors: Author[] = [];
   public authorId = 0;
@@ -29,13 +25,11 @@ export class BookFormComponent implements OnInit {
     publishingYear: new FormControl(''),
     rentConst: new FormControl(''),
     bookDescription: new FormControl(''),
-    authorId: new FormControl(''),
-    bookFile: new FormControl('')
+    authorId: new FormControl('')
   }) as any;
 
   constructor(
     private bookService: BookService,
-    private fb: FormBuilder,
     private authorService: AuthorService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -50,24 +44,6 @@ export class BookFormComponent implements OnInit {
     this.getAuthors();
   }
 
-  get f() {
-    return this.bookService.dataForm?.controls;
-  }
-
-  infoForm() {
-    this.bookService.dataForm = this.fb.group({
-      bookId: null,
-      bookName: ['', [Validators.required]],
-      translator: ['', [Validators.required]],
-      bookAmount: ['', [Validators.required]],
-      publishingYear: ['', [Validators.required]],
-      rentConst: ['', [Validators.required]],
-      bookDescription: ['', [Validators.required]],
-      authorId: ['', [Validators.required]],
-      bookFile: []
-    });
-  }
-  
   private loadData(bookId: number) {
     this.bookService.getBook(bookId).subscribe((data => {
       for (const controlName in this.bookForm.controls) {
@@ -129,8 +105,7 @@ export class BookFormComponent implements OnInit {
       publishingYear,
       rentConst,
       bookDescription,
-      authorId,
-      bookFile
+      authorId
     } = this.bookForm.value;
 
     const newBook: any = {
@@ -142,8 +117,7 @@ export class BookFormComponent implements OnInit {
       bookDescription,
       author: {
         authorId: authorId
-      },
-      bookFile
+      }
     }
     for (const controlName in this.bookForm.controls) {
       if (controlName) {
@@ -170,26 +144,6 @@ export class BookFormComponent implements OnInit {
         }
 
         reader.readAsDataURL(event.target.files[i]);
-      }
-    }
-  }
-
-  onSelectFile(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.bookFile = file;
-      // this.bookForm['bookFile'].patchValue(file);
-
-      var mimeType = event.target.files[0].type;
-      if (mimeType.match(/image\/*/) == null) {
-        this.message = "Only images are supported.";
-        return;
-      }
-      var reader = new FileReader();
-      this.imagePath = file;
-      reader.readAsDataURL(file);
-      reader.onload = (_event) => {
-        this.imgURL = reader.result;
       }
     }
   }

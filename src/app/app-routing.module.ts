@@ -1,3 +1,4 @@
+import { HomeListComponent } from './components/home-list/home-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BookComponent } from './components/book/book.component';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'authors', component: AuthorComponent },
   { path: 'author-form/:id', component: AuthorFormComponent },
   { path: 'upload-files/:bookId', component: UploadFilesComponent },
+  { path: 'homes', component: HomeListComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

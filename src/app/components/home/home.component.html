@@ -1,7 +1,43 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div class="container">
     <header class="jumbotron">
         <p>{{ content }}</p>
     </header>
 </div>
-<app-footer></app-footer>
+<app-footer></app-footer> -->
+
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <h1>Gestion Article</h1>
+    </div>
+</mat-toolbar>
+<form [formGroup]="this.homeService.dataForm" *ngIf="this.homeService.dataForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id" id="id">
+    <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address" id="address">
+    </div>
+    <div class="form-group">
+        <label>Create</label>
+        <input type="date" class="form-control" formControlName="createDate" id="createDate">
+    </div>
+    <div class="form-group">
+        <label>File Upload </label>
+        <input type="file" accept="image/*" (change)="onSelectFile($event)">
+        <img [src]="imgURL" height="200" *ngIf="imgURL">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-outline-success" routerLink="/homes"><i class="fa fa-plus-square"></i> Liste</a>
+    </div>
+</form>
+<div *ngIf="this.homeService.choixmenu === 'A'; else closeBtn">
+</div>
+<ng-template #closeBtn>
+    <button class="btn btn-dark" (click)="close()">Close</button>
+</ng-template>

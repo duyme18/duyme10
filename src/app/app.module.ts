@@ -1,6 +1,7 @@
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,11 @@ import { BookComponent } from './components/book/book.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
+import { HomeListComponent } from './components/home-list/home-list.component';
+
+const MATERIAL_MODULES = [MatToolbarModule,
+  MatIconModule
+];
 
 @NgModule({
   declarations: [
@@ -55,6 +61,7 @@ import { FooterComponent } from './templates/footer/footer.component';
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
+    HomeListComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,8 +81,12 @@ import { FooterComponent } from './templates/footer/footer.component';
     MatInputModule,
     MatButtonModule,
     MatBadgeModule,
+
+    MatDialogModule
   ],
-  providers: [authInterceptorProviders],
+  exports: [MATERIAL_MODULES],
+  providers: [authInterceptorProviders, DatePipe, { provide: MAT_DIALOG_DATA, useValue: {}, },
+    { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

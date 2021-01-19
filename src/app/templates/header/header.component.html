@@ -14,7 +14,7 @@
             <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
         </li>
         <li class="nav-item" *ngIf="showAdminBoard">
-            <a href="/books" class="nav-link" *ngIf="isLoggedIn" routerLink="books">Book</a>
+            <a class="nav-link" *ngIf="isLoggedIn" routerLink="/books">Book</a>
         </li>
         <li class="nav-item">
             <span *ngIf="totalAuthors > 0" matBadge="{{ totalAuthors }}" matBadgeColor="warn" matBadgeSize="small">
