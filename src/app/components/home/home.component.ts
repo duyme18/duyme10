@@ -1,4 +1,5 @@
-import { Router } from '@angular/router';
+import { Home } from './../../models/home';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from './../../services/home.service';
 import { UserService } from './../../services/user.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   //     }
   //   );
   // }
-
+  id: any;
   homeFile: any;
   public imagePath: any;
   imgURL: any;
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public homeService: HomeService,
     public fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<HomeComponent>,
@@ -44,6 +46,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+
     if (this.homeService.choixmenu == "A") { this.infoForm() };
   }
 
@@ -51,7 +55,6 @@ export class HomeComponent implements OnInit {
 
   infoForm() {
     this.homeService.dataForm = new FormGroup({
-      id: new FormControl(''),
       address: new FormControl('', Validators.required),
       createDate: new FormControl('', Validators.required),
       profile: new FormControl('', Validators.required)
@@ -83,10 +86,8 @@ export class HomeComponent implements OnInit {
   }
 
   updateData() {
-    this.homeService.updatedata(this.homeService.dataForm?.value.id, this.homeService.dataForm?.value).
+    this.homeService.updatedata(this.id, this.homeService.dataForm?.value).
       subscribe(data => {
-        this.dialogRef.close();
-        this.getData();
         this.router.navigate(['/homes']);
       });
   }
@@ -120,8 +121,8 @@ export class HomeComponent implements OnInit {
   }
 
   close() {
-   this.dialogRef.close();
-   this.resetForm();
+    this.dialogRef.close();
+    this.resetForm();
   }
 
 }

@@ -1,3 +1,4 @@
+import { CartComponent } from './components/cart/cart.component';
 import { HomeListComponent } from './components/home-list/home-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BookComponent } from './components/book/book.component';
@@ -17,11 +18,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'user/profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
+  { path: 'user/cart', component: CartComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'books', component: BookComponent },
@@ -31,7 +33,7 @@ const routes: Routes = [
   { path: 'author-form/:id', component: AuthorFormComponent },
   { path: 'upload-files/:bookId', component: UploadFilesComponent },
   { path: 'homes', component: HomeListComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'homes', pathMatch: 'full' },
 ];
 
 @NgModule({

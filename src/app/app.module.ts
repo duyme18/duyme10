@@ -37,6 +37,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
 import { HomeListComponent } from './components/home-list/home-list.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const MATERIAL_MODULES = [MatToolbarModule,
   MatIconModule
@@ -62,6 +63,7 @@ const MATERIAL_MODULES = [MatToolbarModule,
     HeaderComponent,
     FooterComponent,
     HomeListComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

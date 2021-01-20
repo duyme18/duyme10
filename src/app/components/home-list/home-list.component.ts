@@ -65,5 +65,14 @@ export class HomeListComponent implements OnInit {
     this.matDialog.open(HomeComponent, dialogConfig);
   }
 
+  public editBook(item: Home, id: any) {
+    this.homeService.choixmenu = "M";
+    this.homeService.dataForm = this.fb.group(Object.assign({}, item));
+    this.router.navigate(['home', id]);
+  }
 
+  public addHome() {
+    this.homeService.choixmenu = "A";
+    this.router.navigate(['home', 0]);
+  }
 }

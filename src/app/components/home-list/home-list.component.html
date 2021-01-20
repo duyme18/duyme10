@@ -33,28 +33,28 @@
 </div> -->
 <div class="container">
     <div class="row">
+        <button class="btn btn-primary" (click)="addHome()">Create New</button>
         <table id="customers" style="border-collapse: collapse;">
             <tr>
+                <th>ID</th>
                 <th>Address</th>
                 <th>Create</th>
                 <th>Image</th>
-                <th>
-                    <button class="btn btn-primary" routerLink="/home">Create New</button>
-                </th>
+                <th></th>
             </tr>
             <tr *ngFor="let item of homeService.listData ">
-                <th class="hidden">{{item.id}}</th>
+                <th>{{item.id}}</th>
                 <td>{{item.address}}</td>
                 <td>{{item.createDate}}</td>
                 <td>
-                    <img class="marginauto" src="{{this.homeService.host+'/api/auth/ImgHomes/'+item.id}}" style="width:150px" alt="">
+                    <img class="marginauto" src="{{this.homeService.host+'/api/auth/ImgHomes/'+item.id}}"
+                        style="width:150px" alt="">
                 </td>
                 <td>
-                    <mat-icon style="cursor: pointer;" title="Nhấn vào để xóa" (click)="selectData(item)">clear
-                    </mat-icon>
-                    &nbsp;
-                    <mat-icon style="cursor: pointer; " title="Nhấn vào để chỉnh sửa" (click)="removeData(item.id)">
+                    <mat-icon style="cursor: pointer; " title="Nhấn vào để chỉnh sửa" (click)="editBook(item, item.id)">
                         edit
+                    </mat-icon> &nbsp;
+                    <mat-icon style="cursor: pointer;" title="Nhấn vào để xóa" (click)="removeData(item.id)">clear
                     </mat-icon>
                 </td>
             </tr>

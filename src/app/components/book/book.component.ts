@@ -63,9 +63,11 @@ export class BookComponent implements OnInit {
   }
 
   public deleteBook(bookId: any) {
-    this.bookService.deleteBook(bookId).subscribe((data) => {
-      this.getBooks();
-    });
+    if (window.confirm('Chắc chắn bạn muốn xóa cuốn sách này?')) {
+      this.bookService.deleteBook(bookId).subscribe((result) => {
+        this.getBooks();
+      });
+    }
   }
 
   public showBookDetails(bookId: any) {
