@@ -86,7 +86,11 @@ export class HomeComponent implements OnInit {
   }
 
   updateData() {
-    this.homeService.updatedata(this.id, this.homeService.dataForm?.value).
+    const formData = new FormData();
+    const home = this.homeService.dataForm?.value;
+    formData.append('home', JSON.stringify(home));
+    formData.append('file', this.homeFile);
+    this.homeService.updateData(this.id, formData).
       subscribe(data => {
         this.router.navigate(['/homes']);
       });

@@ -25,8 +25,8 @@ export class HomeService {
     return this.http.post(`${this.baseUrl}`, formData);
   }
 
-  updatedata(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  updateData(id: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, formData);
   }
 
   deleteData(id: number): Observable<any> {
@@ -35,7 +35,6 @@ export class HomeService {
   }
 
   getAll(): Observable<any> {
-
     return this.http.get(`${this.baseUrl}`);
   }
 

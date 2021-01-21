@@ -7,7 +7,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  
+
   currentUser: any;
 
   constructor(private tokenStorage: TokenStorageService) { }
